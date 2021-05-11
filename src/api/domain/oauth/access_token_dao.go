@@ -18,3 +18,13 @@ func (at *AccessToken) Save() errors.ApiError {
 
 	return nil
 }
+
+func GetAccessToken(accessToken string) (*AccessToken, errors.ApiError) {
+	token := tokens[accessToken]
+
+	if token == nil {
+		return nil, errors.NewNotFoundApiError("no access token found")
+	}
+
+	return token, nil
+}
