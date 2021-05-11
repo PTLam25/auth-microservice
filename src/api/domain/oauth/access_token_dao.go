@@ -22,7 +22,7 @@ func (at *AccessToken) Save() errors.ApiError {
 func GetAccessToken(accessToken string) (*AccessToken, errors.ApiError) {
 	token := tokens[accessToken]
 
-	if token == nil {
+	if token == nil || token.IsExpired() {
 		return nil, errors.NewNotFoundApiError("no access token found")
 	}
 
